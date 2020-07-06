@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import requests
 import sys, os
 
@@ -12,3 +14,5 @@ if len(sys.argv) != 2:
         print(usage)
 else:
     print(usage)
+
+    
