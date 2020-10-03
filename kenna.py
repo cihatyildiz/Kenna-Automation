@@ -3,11 +3,31 @@
 import requests, sys, os
 import configparser
 import fire 
+from kenna.api import * 
 
-from kenna.assets import *
-from kenna.vulns import *
 
-class KennaCliApp:
+def cvehistory(cve_number):
+    '''
+    Finds vulnerable assets related to teh CVE number 
+    '''
+    kt = AppTools()
+    ka = KennaAPI(kenna_api_key)
+    if kt.isValidCVENumber(cve_number): 
+        print(cve_number.upper())
+        cve=cve_number.upper()
+        result=ka.getCVEHistory(cve)
+        print(result)
+    else:
+        print("The CVE number is not valid...")
+
+def assets(param=None, value=None):
+    '''
+    Provide information about all assets
+    '''
+    print("assets")
+    pass
+
+def asset(key, value):
     '''
     Provide information about the assets based on key and value params.
     
@@ -15,39 +35,38 @@ class KennaCliApp:
         hostname, asset_id, ip 
     value : string
         the value related to key
-    '''    
+    '''
+    if key == "ip":
+        kt = AppTools()
+        if kt.isValidIPv4Address(value):
+            print(value)
+        else:
+            print("ss")
+    elif key == "hostname":
+        print("HOSTNAME")
 
-    def __init__(self):
-        pass
+def search(key, pattern):
+    '''
+    Searches the pattern in Kenna Platform.
+    
+    key : string
+        asset, vulnerability 
+    value : string
+        the search pattern used in Kenna search
+    '''
+    if key == "ip":
+        kt = AppTools()
+        if kt.isValidIPv4Address(value):
+            print(value)
+        else:
+            print("ss")
+    elif key == "hostname":
+        print("HOSTNAME")    
 
-    def cve(self, cve_number):
-        '''
-        Search a CVE number in your environment 
-        '''
-        print("CVE")
-        pass
-
-    def assets(self, param=None, value=None):
-        '''
-        Provide information about all assets
-        '''
-        print("assets")
-        pass
-
-    def asset(self, key, value):
-        '''
-        Provide information about the assets based on key and value params.
-        
-        key : string
-            hostname, asset_id, ip 
-        value : string
-            the value related to key
-        '''
-        pass
 
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('kenna.config')
     global kenna_api_key
     kenna_api_key = config['KENNA']['api_key']
-    fire.Fire(KennaCliApp)
+    fire.Fire()

@@ -1,4 +1,6 @@
 import requests
+import encodings
+import re
 
 class Asset:
 
@@ -17,10 +19,23 @@ class KennaAPI:
         self.api_key = api_key
         print(self.api_key)
 
-    def getCVEHistory(self):
-        pass
+    def getCVEHistory(self, cve_id):
+        url = "https://api.kennasecurity.com/vulnerability_definitions/history"
+        headers = {
+            "X-Risk-Token": self.api_key,
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url, headers=headers )
+        return response
 
-    def getInfoForALlAssets(self): # get information from all assets
+    def getInfoForALlAssets(self): 
+        url = "https://api.kennasecurity.com/vulnerability_definitions/history"
+        headers = {
+            "X-Risk-Token": self.api_key,
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url, headers=headers )
+
         pass
 
     def downloadVulnerabilities(self):
@@ -104,3 +119,34 @@ class KennaAPI:
     def showFix(self, vulnerability_id):
         pass
 
+
+class AppTools:
+
+    def isValidIPv4Address(self, ip_address):
+        regex = '''^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+            25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+            25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.( 
+            25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$'''
+        if type(ip_address) != str :
+            print("data type is not valid")
+            return False
+        if re.search(regex, ip_address, re.IGNORECASE):
+            return True
+        else:
+            return False
+
+    def isInternalIPv4(self):
+        return False
+
+    def isValidCVENumber(self,cve_id):
+        if type(cve_id) != str :
+            print("data type is not valid")
+            return False
+
+        if re.search(r"^CVE\-[0-9][0-9][0-9][0-9]\-[0-9][0-9][0-9][0-9][0-9]?", cve_id, re.IGNORECASE):
+            return True
+        else:
+            return False
+
+    def urlEncodeSearchPattern(self, search_patern):
+        return False
