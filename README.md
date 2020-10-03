@@ -24,6 +24,22 @@ Command line interface for Kenna API. This application is created for the one wh
 
 ## Usage
 
+Show a brief information based on a search pattern
+```sh
+python3 kenna.py summary <kenna-search pattern>
+```
+
+Show vulnerabilities based on a search pattern
+```sh
+python3 kenna.py assets <kenna-search pattern>
+```
+
+Show vulnerabilities based on a search pattern
+```sh
+python3 kenna.py assets <kenna-search pattern>
+```
+
+Get vulnerability score history: 
 ```sh
 python3 kenna.py cvehistory cve-2020-1472
 ```
