@@ -17,15 +17,17 @@ class KennaAPI:
 
     def __init__(self, api_key):
         self.api_key = api_key
-        print(self.api_key)
+        #print(self.api_key)
 
     def getCVEHistory(self, cve_id):
-        url = "https://api.kennasecurity.com/vulnerability_definitions/history"
+        url = "https://api.kennasecurity.com/vulnerability_definitions/history?cve={}".format(cve_id)
         headers = {
             "X-Risk-Token": self.api_key,
             "Content-Type": "application/json"
         }
+        print(headers)
         response = requests.get(url, headers=headers )
+        print(response.json())
         return response
 
     def getInfoForALlAssets(self): 
@@ -45,6 +47,13 @@ class KennaAPI:
         pass
 
     def searchAssets(self, search_param):
+        url = "https://api.kennasecurity.com/assets/search?status[]=active&tags[]=foo&tags[]=bar"
+        headers = {
+            "X-Risk-Token": self.api_key,
+            "Content-Type": "application/json"
+        }
+        response = requests.get(url, headers=headers )
+        return response
         pass
 
     def validateAssetSearchQuery(self, search_param):
@@ -149,4 +158,5 @@ class AppTools:
             return False
 
     def urlEncodeSearchPattern(self, search_patern):
-        return False
+        url_pattern = None
+        return url_pattern

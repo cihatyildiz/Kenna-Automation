@@ -20,10 +20,22 @@ def cvehistory(cve_number):
     else:
         print("The CVE number is not valid...")
 
-def assets(param=None, value=None):
+def summary():
     '''
-    Provide information about all assets
+    Show a summary about Kenna 
     '''
+    pass
+
+def assets(search_pattern):
+    '''
+    Show assets based on a search patten 
+    '''
+    if search_pattern == None:
+        print("Please specify a search pattern")
+        sys.exit(1)
+    ka = KennaAPI(kenna_api_key)
+    result = ka.searchAssets(search_pattern)
+    print(result)
     print("assets")
     pass
 
