@@ -1,6 +1,6 @@
 # A CLI for Kenna Platform
 
-Command line interface for Kenna API. This application is created for the one who wants to get quick informaiton from Kenna platform. 
+Command line interface for Kenna Platform.  This application is created for the one who wants to get quick informaiton from Kenna platform.  
 
 ## The Kenna Modules Implemented with The API
 
