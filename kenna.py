@@ -1,23 +1,42 @@
-#!/usr/bin/python3
+from cmd import Cmd
+ 
+class MyPrompt(Cmd):
+    prompt = 'pb> '
+    intro = "Welcome! Type ? to list commands"
+ 
+    def do_exit(self, inp):
+        print("Bye")
+        return True
+    
+    def help_exit(self):
+        print('exit the application. Shorthand: x q Ctrl-D.')
+ 
+    def do_add(self, inp):
+        print("adding '{}'".format(inp))
+ 
+    def help_add(self):
+        print("Add a new entry to the system.")
 
-import sys, os
-import argparse
+    def do_connectors(self):
+        print("do connectors")
 
+    def help_connectors(self):
+        print("help_connectors")
 
+    def do_users(self):
+        print("help_users")
+    
+    def help_users(self):
+        print("help_users")
 
-if __name__ == "__main__":
-
-    # parse the arguments 
-    parser = argparse.ArgumentParser(
-        prog="kenna",
-        description="Simple Tool for Kenna Security Platform",
-        epilog="This tool uses kenna api platform to get information")
-
-    parser.add_argument("search_pattern", metavar="search", type=str, help="Search pattern")
-    parser.add_argument("-v", "--vulns", metavar="", help="get vulnerabilities based on search pattern")
-    parser.add_argument("-a", "--assets", metavar="", help="get assets based on search pattern")
-    parser.add_argument("-f", "--fixes", metavar="", help="get fixes based on search pattern")
-
-    args = parser.parse_args()
-    print(args.accumulate())
-    print(args)
+    def default(self, inp):
+        if inp == 'x' or inp == 'q':
+            return self.do_exit(inp)
+ 
+        print("Default: {}".format(inp))
+ 
+    do_EOF = do_exit
+    help_EOF = help_exit
+ 
+if __name__ == '__main__':
+    MyPrompt().cmdloop()

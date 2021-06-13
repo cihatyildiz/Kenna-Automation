@@ -1,6 +1,6 @@
 # A CLI for Kenna Platform
 
-Command line interface for Kenna Platform.  This application is created for the one who wants to get quick informaiton from Kenna platform.  
+Command line interface for Kenna Platform that help security engineers to get results quickly.  
 
 ## The Kenna Modules Implemented with The API
 
@@ -21,6 +21,14 @@ Command line interface for Kenna Platform.  This application is created for the 
  - [x] CVEs 
  - [ ] Kenna VI+
  - [ ] Inference
+
+## Installation
+
+Installing this tool is very easy. You just need to run the install.sh from the command line. 
+
+```sh
+~$ bash install.sh
+```
 
 ## Usage
 
