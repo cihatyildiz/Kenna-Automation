@@ -1,13 +1,48 @@
+import sqlite3, sys
+import logging
 from cmd import Cmd
- 
-class MyPrompt(Cmd):
-    prompt = 'pb> '
-    intro = "Welcome! Type ? to list commands"
+
+
+xintro = """
+Delta Dental of California
+██╗  ██╗███████╗███╗   ██╗███╗   ██╗ █████╗ 
+██║ ██╔╝██╔════╝████╗  ██║████╗  ██║██╔══██╗
+█████╔╝ █████╗  ██╔██╗ ██║██╔██╗ ██║███████║
+██╔═██╗ ██╔══╝  ██║╚██╗██║██║╚██╗██║██╔══██║
+██║  ██╗███████╗██║ ╚████║██║ ╚████║██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═══╝╚═╝  ╚═╝
+Interactive Shell
+"""
+
+class KennaSh(Cmd):
+
+    def __init__(self):
+        super().__init__()
+        self.prompt = 'kenna> '
+        self.intro = xintro
  
     def do_exit(self, inp):
         print("Bye")
         return True
+
+    def do_cve(self, param):
+        print(param)
+
+    def help_cve(self):
+        print("help_searcj")
+
+    def do_search(self, param):
+        print("do_searcj")
+
+    def help_search(self):
+        print("help_searcj")
+
+    def do_tickets(self, param):
+        print("do_tickets")
     
+    def help_tickets(self):
+        print("help_tickets")
+
     def help_exit(self):
         print('exit the application. Shorthand: x q Ctrl-D.')
  
@@ -17,13 +52,13 @@ class MyPrompt(Cmd):
     def help_add(self):
         print("Add a new entry to the system.")
 
-    def do_connectors(self):
+    def do_connectors(self, param):
         print("do connectors")
 
-    def help_connectors(self):
+    def help_connectors(self, param):
         print("help_connectors")
 
-    def do_users(self):
+    def do_users(self, param):
         print("help_users")
     
     def help_users(self):
@@ -39,4 +74,4 @@ class MyPrompt(Cmd):
     help_EOF = help_exit
  
 if __name__ == '__main__':
-    MyPrompt().cmdloop()
+    KennaSh().cmdloop()
